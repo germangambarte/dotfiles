@@ -1,7 +1,7 @@
 [
   {
     "key": "ctrl+e",
-    "command": "workbench.action.toggleSidebarVisibility"
+    "command": "workbench.action.toggleSidebarVisibility",
   },
   {
     "key": "ctrl+e",
@@ -66,12 +66,12 @@
   {
     "key": "shift+h",
     "command": "workbench.action.previousEditor",
-    "when": "vim.mode == 'Normal'"
+    "when": "textInputFocus && vim.mode == 'Normal'"
   },
   {
     "key": "shift+l",
     "command": "workbench.action.nextEditor",
-    "when": " vim.mode == 'Normal'"
+    "when": "textInputFocus && vim.mode == 'Normal'"
   },
   {
     "key": "ctrl+\\",
@@ -79,42 +79,62 @@
   },
   // Navigate between code actions
   {
-    "key": "ctrl+j",
+    "key": "ctrl+n",
     "command": "selectNextCodeAction",
-    "when": "actionWidgetVisible"
+    "when": "codeActionMenuVisible"
   },
   {
-    "key": "ctrl+k",
+    "key": "ctrl+p",
     "command": "selectPrevCodeAction",
-    "when": "actionWidgetVisible"
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "acceptSelectedCodeAction",
+    "when": "codeActionMenuVisible"
   },
   // Navigates between suggestions
   {
-    "key": "ctrl+j",
+    "key": "ctrl+n",
     "command": "selectNextSuggestion",
-    "when": "vim.active && suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    "when": "suggestWidgetVisible"
   },
   {
-    "key": "ctrl+k",
+    "key": "ctrl+p",
     "command": "selectPrevSuggestion",
-    "when": "vim.active && suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    "when": "suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "acceptSelectedSuggestion",
+    "when": "suggestWidgetVisible"
   },
   // Navigates between VSC menu options
   {
-    "key": "ctrl+j",
+    "key": "ctrl+n",
     "command": "workbench.action.quickOpenSelectNext",
-    "when": "vim.active && inQuickOpen"
+    "when": "inQuickOpen"
   },
   {
-    "key": "ctrl+k",
+    "key": "ctrl+p",
     "command": "workbench.action.quickOpenSelectPrevious",
-    "when": "vim.active && inQuickOpen"
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "workbench.action.acceptSelectedQuickOpenItem",
+    "when": "inQuickOpen"
   },
   // Show hover
   {
     "key": "shift+k",
     "command": "editor.action.showHover",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus && vim.mode == 'Normal' "
+  },
+  {
+    "key": "ctrl+k",
+    "command": "jumpToNextSnippetPlaceholder",
+    "when": "editorTextFocus && vim.mode == 'Insert' "
   },
   // Move selected code
   {

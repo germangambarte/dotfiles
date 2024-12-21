@@ -1,6 +1,6 @@
 {
   // Editor
-  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.enabled": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
@@ -8,7 +8,7 @@
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "'JetBrains Mono','Cascadia Code'",
+  "editor.fontFamily": "Iosevka Custom",
   "editor.fontLigatures": true,
   "editor.fontVariations": true,
   "editor.formatOnSave": true,
@@ -45,7 +45,7 @@
   "extensions.ignoreRecommendations": true,
   //Extras
   "telemetry.telemetryLevel": "off",
-  "terminal.integrated.fontFamily": "'JetBrainsMono NFM'",
+  "terminal.integrated.fontFamily": "Iosevka Nerd Font",
   "window.menuBarVisibility": "hidden",
   // GitLens
   "gitlens.currentLine.enabled": false,
@@ -87,13 +87,19 @@
     },
     // Files
     {
-      "before": ["leader", "f", "f"],
+      "before": ["leader", "s", "f"],
       "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": ["leader", "f", "b"],
+      "before": ["leader", "s", "/"],
       "commands": [
         "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+      ]
+    },
+    {
+      "before": ["leader", "s", "g"],
+      "commands": [
+        "workbench.action.findInFiles"
       ]
     },
     // Diagnostics
@@ -111,49 +117,12 @@
       "commands": ["editor.action.quickFix"]
     },
     {
+      "before": ["leader", "c", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
       "before": ["leader", "b", "j"],
       "commands": ["workbench.action.moveEditorToBelowGroup"]
-    },
-    // Debugger
-    {
-      "before": ["leader", "d", "s"],
-      "commands": ["workbench.action.debug.start"]
-    },
-    {
-      "before": ["leader", "d", "p"],
-      "commands": ["workbench.action.debug.pause"]
-    },
-    {
-      "before": ["leader", "d", "r"],
-      "commands": ["workbench.action.debug.restart"]
-    },
-    {
-      "before": ["leader", "d", "d"],
-      "commands": ["workbench.action.debug.disconnect"]
-    },
-    {
-      "before": ["leader", "d", "t"],
-      "commands": ["editor.debug.action.toggleBreakpoint"]
-    },
-    {
-      "before": ["leader", "d", "b"],
-      "commands": ["workbench.action.debug.stepBack"]
-    },
-    {
-      "before": ["leader", "d", "c"],
-      "commands": ["workbench.action.debug.continue"]
-    },
-    {
-      "before": ["leader", "d", "C"],
-      "commands": ["workbench.debug.action.runToCursor"]
-    },
-    {
-      "before": ["leader", "d", "i"],
-      "commands": ["workbench.action.editor.stepInto"]
-    },
-    {
-      "before": ["leader", "d", "o"],
-      "commands": ["workbench.debug.action.stepOut"]
     },
     // Show views
     {
@@ -193,7 +162,6 @@
     "list.focusOutline": "#bdbdbd17",
     "list.focusForeground": "#ffffff9a"
   },
-  "workbench.colorTheme": "Rosé Pine Moon",
   "workbench.iconTheme": "symbols",
   "workbench.productIconTheme": "fluent-icons",
   "workbench.sideBar.location": "right",
@@ -203,5 +171,16 @@
   "window.title": "${dirty}${activeEditorShort}",
   "prettier.requireConfig": true,
   "breadcrumbs.enabled": false,
-  "workbench.layoutControl.enabled": false,
+  "files.autoSaveWhenNoErrors": true,
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
 }
