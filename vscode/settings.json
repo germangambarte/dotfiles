@@ -1,4 +1,4 @@
-{
+  {
   // Editor
   "editor.bracketPairColorization.enabled": false,
   "editor.codeActionsOnSave": {
@@ -8,7 +8,7 @@
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "Iosevka Custom",
+  "editor.fontFamily": "Iosevka Comfy Wide Motion",
   "editor.fontLigatures": true,
   "editor.fontVariations": true,
   "editor.formatOnSave": true,
@@ -45,7 +45,7 @@
   "extensions.ignoreRecommendations": true,
   //Extras
   "telemetry.telemetryLevel": "off",
-  "terminal.integrated.fontFamily": "Iosevka Nerd Font",
+  "terminal.integrated.fontFamily": "Iosevka Comfy Wide Motion",
   "window.menuBarVisibility": "hidden",
   // GitLens
   "gitlens.currentLine.enabled": false,
@@ -173,14 +173,18 @@
   "breadcrumbs.enabled": false,
   "files.autoSaveWhenNoErrors": true,
   "files.autoSave": "afterDelay",
-  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.colorTheme": "poimandres",
   "github.copilot.enable": {
     "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false
   },
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
 }
+

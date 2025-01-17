@@ -1,0 +1,159 @@
+"" ========================================================
+"" Base Settings
+"" ========================================================
+set scrolloff=10
+set history=1000
+set number relativenumber
+set showmode
+set showcmd
+set smartcase
+set incsearch
+set hlsearch
+set visualbell
+
+" Clipboard Integration
+set clipboard+=unnamed
+
+" Leader Key
+let mapleader="\<space>"
+
+"Default Behavior
+set gdefault
+
+" iIdeaVim Specific Settings
+set ideajoin
+set ideamarks
+set idearefactormode=normal
+set ideastatusicon=gray
+
+
+"" ========================================================
+"" Plugin Settings
+"" ========================================================
+set exchange
+set commentary
+set ReplaceWithRegister
+set surround
+
+
+" Highlighting Plugins
+set highlightedyank
+set quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Object Plugins
+set textobj-entire
+set indent-object
+set argtextobj
+let g:argtextobj_pairs="[:],(:),<:>"
+
+
+"" ========================================================
+"" Key Mappings
+"" ========================================================
+" Tab navigation
+nmap <S-h> <Action>(PreviousTab)
+nmap <S-l> <Action>(NextTab)
+
+" Pane navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+" Navigation actions
+nmap <C-i> <Action>(Back)
+nmap <C-o> <Action>(Forward)
+
+" Jump between methods
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+
+" Visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" IDE interaction
+nmap <C-m> <Action>(ShowPopupMenu)
+nmap <C-S-m> <Action>(ToolWindowsGroup)
+
+" Clear Search Highlighitng
+nnoremap <Esc> <Esc>:noh<return>
+
+
+"" ========================================================
+"" Leader Commands
+"" ========================================================
+
+" Information commands
+nmap <leader>ie <action>(ShowErrorDescription)
+nmap <leader>it <action>(ExpressionTypeInfo)
+nmap <leader>ip <action>(ParameterInfo)
+nmap <leader>ij <action>(QuickJavaDoc)
+nmap <leader>if <action>(FileStructurePopup)
+nmap <leader>iU <action>(ShowUmlDiagram)
+nmap <leader>ih <action>(CallHierarchy)
+nmap <leader>iu <action>(ShowUsages)
+nmap <leader>im <action>(MethodHierarchy)
+
+" Window splits
+nmap <leader>wv <action>(SplitVertically)
+nmap <leader>wh <action>(SplitHorizontally)
+nmap <leader>wu <action>(Unsplit)
+nmap <leader>wm <action>(MoveEditorToOppositeTabGroup)
+nmap <leader>wb <action>(Back)
+nmap <leader>wf <action>(Forward)
+
+" Tab Navigation and Management
+nmap <leader>bd <Action>(CloseContent)
+
+" File navigation
+nmap <leader>fg <Action>(GotoFile)
+nmap <leader>fr <Action>(RecentFiles)
+nmap <leader>fc <Action>(FindInPath)
+nmap <leader>fl <Action>(RecentLocations)
+nmap <leader>fs <Action>(NewScratchFile)
+nmap <leader>fe :NERDTreeToggle<CR>
+nmap <leader>fo <Action>(OpenFile)
+nmap <leader>fy <Action>(CopyAbsolutePath)
+nmap <leader>fp <Action>(ManageRecentProjects)
+nmap <leader>fh <Action>(LocalHistory.ShowHistory)
+nmap <leader>ff <Action>(ShowFilePath)
+nmap <leader>fi <Action>(SelectIn)
+nmap <leader>fp <Action>(ReplaceInPath)
+
+" Run Actions
+nmap <leader>rm <action>(RunMenu)
+nmap <leader>rn <action>(RunClass)
+nmap <leader>rc <Action>(ContextRun)
+nmap <leader>rr <action>(Rerun)
+nmap <leader>rt <Action>(RunTests)
+nmap <leader>rf <action>(RerunFailedTests)
+nmap <leader>rs <Action>(Stop)
+nmap <leader>rC <action>(ChooseRunConfiguration)
+
+" Language Actions
+nmap <leader>cql <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>crn <Action>(RenameElement)
+nmap <leader>ccs <Action>(ChangeSignature)
+nmap <leader>cia <Action>(ShowIntentionActions)
+nmap <leader>cf <Action>(ReformatCode)
+nmap <leader>cli <Action>(InspectCode)
+
+" Go To
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>go <Action>(GotoSuperMethod)
+nmap <leader>gD <Action>(GotoTypeDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gT <Action>(GotoTest)
+
+" Search
+nmap <leader>sS <action>(SearchEverywhere)
+nmap <leader>su <Action>(FindUsages)
+nmap <leader>sn <Action>(ShowNavBar)
+nmap <leader>sa <Action>(GotoAction)
+nmap <leader>sc <Action>(GotoClass)
+nmap <leader>sf <Action>(GotoFile)
+nmap <leader>ss <Action>(GotoSymbol)
+nmap <leader>st <Action>(TextSearchAction)
+
