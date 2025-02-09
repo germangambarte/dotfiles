@@ -1,0 +1,17 @@
+theme = "gruber-darker"
+
+[editor]
+line-number = "relative"
+mouse = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+S-h = ":bn"
+S-l = ":bp"

@@ -14,13 +14,13 @@ set('n', 'n', 'nzzzv')
 set('n', 'N', 'Nzzzv')
 
 -- buffers
-set('n', '<S-h>', '<cmd>bprevious<CR>')
-set('n', '<S-l>', '<cmd>bnext<CR>')
+-- set('n', '<S-h>', '<cmd>bprevious<CR>')
+-- set('n', '<S-l>', '<cmd>bnext<CR>')
 set('n', '<leader>bd', '<cmd>:bdelete<CR>')
 
 -- tabs
-set('n', '<left>', 'gT')
-set('n', '<right>', 'gt')
+-- set('n', '<left>', 'gT')
+-- set('n', '<right>', 'gt')
 
 -- greatest remap ever
 set('n', '<leader>p', [["+]])
@@ -43,6 +43,10 @@ set('n', '<M-h>', '<c-w>5<')
 set('n', '<M-l>', '<c-w>5>')
 set('n', '<M-k>', '<C-W>+')
 set('n', '<M-j>', '<C-W>-')
+set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 set('n', '<leader>ch', function()
   vim.lsp.inlay_hint(0, nil)
@@ -61,4 +65,18 @@ vim.api.nvim_set_keymap(
   '<leader>cr',
   ':lua CompileAndRun()<CR>',
   { noremap = true, silent = true }
+)
+set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Diagnostic keymaps
+set(
+  'n',
+  '<leader>q',
+  vim.diagnostic.setloclist,
+  { desc = 'Open diagnostic [Q]uickfix list' }
+)
+set(
+'n',
+'<leader>e',
+':lua MiniFiles.open()<cr>'
 )

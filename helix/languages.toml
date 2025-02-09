@@ -1,0 +1,122 @@
+[language-server]
+clangd = { command = "clangd" }
+pylsp = { command = "pylsp" }
+asm-lsp = { command = "asm-lsp" }
+
+[[language]]
+name = "asm"
+scope = "source.asm"
+file-types = ["asm"]
+injection-regex = "asm"
+comment-token = ";"
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["asm-lsp"]
+
+[[grammar]]
+name = "asm"
+source = { git = "https://github.com/RubixDev/tree-sitter-asm", rev = "55b2b913f1e71136027d6fce8212e760c64f3532"}
+
+[language-server.lua-language-server]
+command = "lua-language-server"
+
+[language-server.lua-language-server.config.Lua.hint]
+enable = true
+arrayIndex = "Enable"
+setType = true
+paramName = "All"
+paramType = true
+await = true
+
+
+[language-server.gopls]
+command = "gopls"
+
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
+[[language]]
+name = "c"
+scope = "source.c"
+injection-regex = "c"
+file-types = ["c"] # TODO: ["h"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "clangd" ]
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "c"
+source = { git = "https://github.com/tree-sitter/tree-sitter-c", rev = "7175a6dd5fc1cee660dce6fe23f6043d75af424a" }
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+injection-regex = "cpp"
+file-types = ["cc", "hh", "c++", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", "ixx", "txx", "ino", "C", "H", "cu", "cuh", "cppm", "h++", "ii", "inl", { glob = ".hpp.in" }, { glob = ".h.in" }]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "clangd" ]
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "cpp"
+source = { git = "https://github.com/tree-sitter/tree-sitter-cpp", rev = "670404d7c689be1c868a46f919ba2a3912f2b7ef" }
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["go.work", "go.mod"]
+auto-format = true
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "gopls", "golangci-lint-lsp" ]
+# TODO: gopls needs utf-8 offsets?
+indent = { tab-width = 4, unit = "\t" }
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-lsp.config]
+command = ["golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1"]
+
+[[language]]
+name = "python"
+scope = "source.python"
+formatter = { command = "sh", args = ["-c", "black - | isort -"] }
+auto-format = true
+language-servers = ["pylsp", "ruff"]
+indent = { tab-width = 4, unit = "    " }
+# name = "python"
+# scope = "source.python"
+# injection-regex = "py(thon)?"
+# file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "SConstruct" }, { glob = "SConscript" }]
+# shebangs = ["python", "uv"]
+# roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
+# formatter = { command = "zsh", args = ["-c", "ruff format --stdin-filename python | isort -d -"] }
+# comment-token = "#"
+# language-servers = ["ruff", "jedi", "pylsp"]
+# auto-format = true
+# # TODO: pyls needs utf-8 offsets
+# indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "python"
+source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "4bfdd9033a2225cc95032ce77066b7aeca9e2efc" }
+
+
+# [language-server.pylsp.config.pylsp]
+# plugins.black.enabled = true
+# plugins.pylint.enabled = true
+# plugins.pyflakes.enabled = false
+# plugins.pyls_mypy.enabled = true
+# plugins.pyls_mypy.live_mode = false
+# plugins.isort.enabled = true
+# plugins.rope_autoimport.enabled = true
+
