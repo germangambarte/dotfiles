@@ -5,5 +5,5 @@ wslu/
 menus/
 gh/
 starship-bkp.toml
-plugins/
+# plugins/
 tmux/plugins
