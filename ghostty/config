@@ -1,39 +1,26 @@
-theme = rose-pine
+# theme = catppuccin-mocha
+# theme = Kanagawa Dragon
+theme = Kanagawa Wave
+
+font-size = 11
+font-family = "CaskaydiaMono Nerd Font"
+font-feature = feat
+adjust-cell-height = 50%
+adjust-underline-position = 2
+adjust-cursor-height = 25%
 
 shell-integration = zsh
-font-size = 11
 window-decoration = false
-font-family = "Iosevka Comfy Wide Motion"
-adjust-cell-height = 40%
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
 
 maximize = true
+cursor-color=#cdd6f4
+cursor-text=#1e1e2e
 cursor-style = block
 cursor-style-blink = true
+
 
 window-padding-balance = true
 window-padding-x = 0
 window-padding-y = 0
-
-# keybind = ctrl+a>c=new_tab
-#
-# keybind = ctrl+h=goto_split:left
-# keybind = ctrl+j=goto_split:bottom
-# keybind = ctrl+k=goto_split:top
-# keybind = ctrl+l=goto_split:right
-#
-# keybind = ctrl+left=resize_split:left,10
-# keybind = ctrl+right=resize_split:right,10
-# keybind = ctrl+up=resize_split:up,10
-# keybind = ctrl+down=resize_split:down,10
-#
-# keybind = ctrl+a>\=new_split:right
-# keybind = ctrl+a>-=new_split:down
-#
-# keybind = ctrl+a>z=toggle_split_zoom
-#
-# keybind = ctrl+a>n=next_tab
-# keybind = ctrl+a>p=previous_tab
-#
-# keybind = ctrl+a>r=reload_config

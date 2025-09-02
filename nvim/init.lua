@@ -1,8 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-vim.g.have_nerd_font = true
-
 require 'config.keymaps'
 require 'config.options'
 
@@ -13,21 +8,30 @@ require('lazy').setup({
 
   { import = 'plugins' },
 }, {
+  install = {
+    missing = true,
+    colorscheme = { 'habamax' },
+  },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
   ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
+    -- border = "rounded"
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
     },
   },
 })

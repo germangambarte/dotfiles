@@ -1,31 +1,37 @@
+-- Function to get TypeScript SDK path (prefer local, fallback to global)
+local function get_typescript_sdk()
+  local local_sdk = vim.fn.getcwd() .. '/node_modules/typescript/lib'
+  if vim.fn.isdirectory(local_sdk) == 1 then
+    return local_sdk
+  end
+
+  -- Try global installation
+  local global_root = vim.fn.system('npm root -g'):gsub('\n', ''):gsub('\r', '')
+  local global_sdk = global_root .. '/typescript/lib'
+  if vim.fn.isdirectory(global_sdk) == 1 then
+    return global_sdk
+  end
+
+  -- If both fail, return nil to let vue-language-server find it automatically
+  return nil
+end
 return {
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
     'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
       library = {
-        -- Load luvit types when the `vim.uv` word is found
         { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
     },
   },
   {
-    -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      -- Mason must be loaded before its dependents so we need to set it up here.
-      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Autocompletion
       { 'saghen/blink.cmp' },
     },
     config = function()
@@ -36,12 +42,12 @@ return {
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-          map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
-          map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
-          map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
-          map('gt', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
-          map('gO', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('gW', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
+          -- map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
+          -- map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
+          -- map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
+          -- map('gt', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
+          -- map('gO', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
+          -- map('gW', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
           map('<leader>cr', vim.lsp.buf.rename, '[R]e[n]ame')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -59,11 +65,6 @@ return {
             end
           end
 
-          -- The following two autocommands are used to highlight references of the
-          -- word under your cursor when your cursor rests there for a little while.
-          --    See `:help CursorHold` for information about when this is executed
-          --
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -88,10 +89,6 @@ return {
             })
           end
 
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
@@ -100,18 +97,16 @@ return {
         end,
       })
 
-      -- Diagnostic Config
-      -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
+            -- [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            -- [vim.diagnostic.severity.WARN] = '󰀪 ',
+            -- [vim.diagnostic.severity.INFO] = '󰋽 ',
+            -- [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         },
         virtual_text = {
@@ -129,51 +124,239 @@ return {
         },
       }
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        bashls = {},
-        marksman = {},
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
+        clangd = {},
+        gopls = {
+          settings = {
+            gopls = {
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              hints = {
+                assignVariableTypes = false,
+                compositeLiteralFields = false,
+                compositeLiteralTypes = false,
+                constantValues = false,
+                functionTypeParameters = false,
+                parameterNames = false,
+                rangeVariableTypes = false,
+              },
+              analyses = {
+                -- NOTE: To temporarily enable disabled analyzers for specific debugging:
+                -- :lua vim.lsp.stop_client(vim.lsp.get_clients({name = "gopls"}))
+                -- Then edit this file and save, LSP will restart with new settings
 
+                -- Essential analyzers for catching common issues
+                nilness = true, -- Check for nil pointer dereferences
+                unusedparams = true, -- Find unused function parameters
+                unusedwrite = true, -- Find unused writes to variables
+                useany = true, -- Suggest using 'any' instead of 'interface{}'
+                unreachable = true, -- Find unreachable code
+                unusedresult = true, -- Check for unused results of calls to certain functions
+
+                -- Helpful but not critical (enable as needed)
+                simplifyslice = true, -- Simplify slice expressions
+                simplifyrange = true, -- Simplify range loops
+                simplifycompositelit = true, -- Simplify composite literals
+
+                -- Performance-intensive analyzers (disabled for better performance)
+                shadow = false, -- Check for shadowed variables (can be slow)
+                printf = false, -- Check printf-style functions (can be slow)
+                structtag = false, -- Check struct tags (can be slow)
+                -- fieldalignment = false,  -- Check struct field alignment (very slow)
+                -- unusedvariable = false,  -- Can be slow on large codebases
+
+                -- Less commonly needed analyzers (disabled)
+                modernize = false,
+                stylecheck = false,
+                appends = false,
+                asmdecl = false,
+                assign = false,
+                atomic = false,
+                atomicalign = false,
+                bools = false,
+                buildtag = false,
+                cgocall = false,
+                composite = false,
+                composites = false,
+                contextcheck = false,
+                copylocks = false,
+                deba = false,
+                deepequalerrors = false,
+                defers = false,
+                deprecated = false,
+                directive = false,
+                embed = false,
+                errorsas = false,
+                fillreturns = false,
+                framepointer = false,
+                gofix = false,
+                hostport = false,
+                httpresponse = false,
+                ifaceassert = false,
+                infertypeargs = false,
+                loopclosure = false,
+                lostcancel = false,
+                nilfunc = false,
+                nonewvars = false,
+                noresultvalues = false,
+                shift = false,
+                sigchanyzer = false,
+                slog = false,
+                sortslice = false,
+                stdmethods = false,
+                stdversion = false,
+                stringintconv = false,
+                testinggoroutine = false,
+                tests = false,
+                timeformat = false,
+                unmarshal = false,
+                unsafeptr = false,
+                unusedfunc = false,
+                unusedvariable = false,
+                waitgroup = false,
+                yield = false,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+              semanticTokens = false,
+            },
+          },
+        },
+        cssls = {
+          settings = {
+            css = { validate = true },
+            scss = { validate = true },
+            less = { validate = true },
+          },
+        },
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              emmetCompletions = true,
+              validate = true,
+              lint = {
+                cssConflict = 'warning',
+                invalidApply = 'error',
+                invalidScreen = 'error',
+                invalidVariant = 'error',
+                invalidConfigPath = 'error',
+                invalidTailwindDirective = 'error',
+                recommendedVariantOrder = 'warning',
+              },
+              -- Tailwind class attributes configuration
+              classAttributes = { 'class', 'className', 'classList', 'ngClass', ':class' },
+
+              -- Experimental regex patterns to detect Tailwind classes in various syntaxes
+              experimental = {
+                classRegex = {
+                  -- tw`...` or tw("...")
+                  'tw`([^`]*)`',
+                  'tw\\(([^)]*)\\)',
+
+                  -- @apply directive inside SCSS / CSS
+                  '@apply\\s+([^;]*)',
+
+                  -- class and className attributes (HTML, JSX, Vue, Blade with :class)
+                  'class="([^"]*)"',
+                  'className="([^"]*)"',
+                  ':class="([^"]*)"',
+
+                  -- Laravel @class directive e.g. @class([ ... ])
+                  '@class\\(([^)]*)\\)',
+                },
+              },
+            },
+          },
+        },
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'openFilesOnly',
+              },
+            },
+          },
+        },
+        vue_ls = {
+          init_options = {
+            vue = {
+              hybridMode = false, -- Disable for inlay hints support
+            },
+            -- Only set typescript config if we have a valid TypeScript installation
+            typescript = get_typescript_sdk() and {
+              tsdk = get_typescript_sdk(),
+            } or nil,
+          },
+        },
+        ts_ls = {
+          settings = {
+            typescript = {
+              -- Remove tsdk setting to allow auto-detection
+              tsserver = {
+                useSyntaxServer = false,
+              },
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+            javascript = {
+              -- Remove tsdk setting to allow auto-detection
+            },
+          },
+        },
+        ruff = {
+          init_options = {
+            settings = {
+              logLevel = 'debug',
+            },
+          },
+        },
+        html = {
+          init_options = { provideFormatter = true },
+        },
         lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
-          -- settings = {
-          --   Lua = {
-          --     completion = {
-          --       callSnippet = 'Replace',
-          --     },
-          --     -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-          --     -- diagnostics = { disable = { 'missing-fields' } },
-          --   },
-          -- },
+          settings = {
+            Lua = {
+              diagnostics = {
+                disable = { 'missing-fields' },
+                globals = {
+                  'vim',
+                  'Snacks',
+                },
+              },
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = 'Disable',
+                semicolon = 'Disable',
+                arrayIndex = 'Disable',
+              },
+            },
+          },
         },
       }
 
