@@ -4,23 +4,27 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    indent = {
-      animate = {
-        enabled = vim.fn.has("nvim-0.10") == 1,
-        style = "out",
-        easing = "linear",
-        duration = {
-          step = 20, -- ms per step
-          total = 250, -- maximum duration
-        },
-      },
-    },
+    -- indent = {
+    --   animate = {
+    --     enabled = vim.fn.has("nvim-0.10") == 1,
+    --     style = "out",
+    --     easing = "linear",
+    --     duration = {
+    --       step = 20, -- ms per step
+    --       total = 250, -- maximum duration
+    --     },
+    --   },
+    -- },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = true, layout = "ivy", matcher = {
+      frecuency = true,
+    } },
     scope = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
     terminal = { enabled = true },
+    notifier = { enable = true },
+    notify = { enable = true },
   },
   keys = {
     -- Top Pickers & Explorer
@@ -32,9 +36,9 @@ return {
       desc = "Smart Find Files",
     },
     {
-      "<leader>sb",
+      "<Tab>",
       function()
-        Snacks.picker.buffers()
+        Snacks.picker.buffers({layout = "vscode"})
       end,
       desc = "Buffers",
     },
@@ -123,6 +127,20 @@ return {
         Snacks.picker.qflist()
       end,
       desc = "Quickfix List",
+    },
+    {
+      "gi",
+      function()
+        Snacks.picker.lsp_implementations()
+      end,
+      desc = "Show LSP implementations",
+    },
+    {
+      "gf",
+      function()
+        Snacks.picker.lsp_type_definitions()
+      end,
+      desc = "Show LSP type definitions",
     },
     {
       "gd",

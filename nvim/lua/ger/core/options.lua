@@ -8,7 +8,7 @@ opt.number = true
 opt.winborder = "rounded" -- solid
 opt.winborder = "single" -- https://neovim.io/doc/user/options.html#'winborder'
 
-opt.laststatus = 0
+-- opt.laststatus = 0
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
@@ -17,12 +17,14 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 opt.wrap = false
+opt.cmdheight = 0
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 opt.cursorline = true
+opt.scrolloff = 6
 
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)

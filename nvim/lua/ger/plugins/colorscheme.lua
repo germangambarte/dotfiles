@@ -1,28 +1,53 @@
 return {
   {
+    "olivercederborg/poimandres.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- require("poimandres").setup({
+      --   -- leave this setup function empty for default config
+      --   -- or refer to the configuration section
+      --   -- for configuration options
+      -- })
+      require("poimandres").setup({
+        bold_vert_split = false, -- use bold vertical separators
+        dim_nc_background = false, -- dim 'non-current' window backgrounds
+        disable_background = false, -- disable background
+        disable_float_background = false, -- disable background for floats
+        disable_italics = false, -- disable italics
+      })
+    end,
+
+    -- optionally set the colorscheme within lazy config
+    init = function()
+      -- vim.cmd.colorscheme("poimandres")
+    end,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+            ok = { "undercurl" },
+          },
+        },
+      })
+      -- setup must be called before loading
+      vim.cmd.colorscheme("catppuccin")
+    end,
+  },
+  {
     "rebelot/kanagawa.nvim",
     config = function()
       -- Default options:
       require("kanagawa").setup({
-        compile = false, -- enable compiling the colorscheme
-        undercurl = true, -- enable undercurls
-        commentStyle = { italic = true },
-        functionStyle = {},
-        keywordStyle = { italic = true },
-        statementStyle = { bold = true },
-        typeStyle = {},
-        transparent = false, -- do not set background color
-        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-        terminalColors = true, -- define vim.g.terminal_color_{0,17}
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = "none",
-              },
-            },
-          },
-        },
         overrides = function(colors)
           local theme = colors.theme
           local makeDiagnosticColor = function(color)
@@ -51,20 +76,19 @@ return {
             DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
             DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
             DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
-            -- BlinkCmpMenu = { bg = colors.palette.dragonBlack3 },
-            -- BlinkCmpLabelDetail = { bg = colors.palette.dragonBlack3 },
-            -- BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
+            BlinkCmpMenu = { bg = colors.palette.dragonBlack3 },
+            BlinkCmpLabelDetail = { bg = colors.palette.dragonBlack3 },
+            BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
           }
         end,
-        theme = "lotus", -- Load "wave" theme
+        theme = "dragon", -- Load "wave" theme
         background = { -- map the value of 'background' option to a theme
           dark = "wave", -- "lotus" | "dragon¨
           light = "lotus",
         },
       })
-
       -- setup must be called before loading
-      vim.cmd("colorscheme kanagawa")
+      -- vim.cmd("colorscheme kanagawa")
     end,
   },
   {
@@ -84,7 +108,7 @@ return {
       local border = "#547998"
 
       require("tokyonight").setup({
-        style = "night",
+        style = "storm",
         transparent = transparent,
         styles = {
           sidebars = transparent and "transparent" or "dark",
@@ -112,4 +136,46 @@ return {
       -- vim.cmd("colorscheme tokyonight")
     end,
   },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      require("rose-pine").setup({})
+
+      -- vim.cmd("colorscheme rose-pine-moon")
+      -- vim.cmd("colorscheme rose-pine-dawn")
+      -- vim.cmd("colorscheme rose-pine")
+    end,
+  },
+  -- {
+  --   "jpwol/thorn.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("thorn").setup({
+  --       theme = "light", -- 'light' or 'dark' - defaults to vim.o.background if unset
+  --       background = "cold", -- options are 'warm' and 'cold'
+  --
+  --       styles = {
+  --         keywords = { italics = true, bold = true },
+  --         comments = { italics = true, bold = true },
+  --         strings = { italics = true, bold = true },
+  --
+  --         diagnostic = {
+  --           underline = false, -- if true, flat underlines will be used. Otherwise, undercurls will be used
+  --
+  --           -- true will apply the bg highlight, false applies the fg highlight
+  --           error = { highlight = true },
+  --           hint = { highlight = true },
+  --           info = { highlight = true },
+  --           warn = { highlight = true },
+  --         },
+  --       },
+  --
+  --       transparent = false, -- transparent background
+  --     })
+  --     -- after plugin is loaded by your manager
+  --     -- vim.cmd([[colorscheme thorn]])
+  --   end,
+  -- },
 }

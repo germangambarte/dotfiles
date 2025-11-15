@@ -12,6 +12,7 @@ local excluded_filetypes = {
   "dashboard",
   "lazygit",
   "oil",
+  "fyler",
   "harpoon",
   "prompt",
 }

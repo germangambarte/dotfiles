@@ -37,11 +37,11 @@ return {
           prepend_args = { "--style=file", "--fallback-style=WebKit" },
         },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 3000,
-      },
+      -- format_on_save = {
+      --   lsp_fallback = true,
+      --   async = false,
+      --   timeout_ms = 3000,
+      -- },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()

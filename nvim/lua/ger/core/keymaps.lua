@@ -59,10 +59,16 @@ keymap.set({ "n", "t" }, "<C-Down>", ":resize +2<CR>")
 keymap.set({ "n", "t" }, "<C-Left>", ":vertical resize -2<CR>")
 keymap.set({ "n", "t" }, "<C-Right>", ":vertical resize +2<CR>")
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+
+-- Exit terminal with Esc
+keymap.set("t", "<Esc>", "<C-\\><C-N>")
+
+-- Open small terminal
+keymap.set("n", "<leader>st", function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 10)
+end)
+
+keymap.set({"n", "v"}, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
