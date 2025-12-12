@@ -4,30 +4,52 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- indent = {
-    --   animate = {
-    --     enabled = vim.fn.has("nvim-0.10") == 1,
-    --     style = "out",
-    --     easing = "linear",
-    --     duration = {
-    --       step = 20, -- ms per step
-    --       total = 250, -- maximum duration
-    --     },
-    --   },
-    -- },
+    indent = {
+      animate = {
+        enabled = false,
+        -- style = "out",
+        -- easing = "linear",
+        -- duration = {
+        --   step = 20, -- ms per step
+        --   total = 250, -- maximum duration
+        -- },
+      },
+    },
     input = { enabled = true },
-    picker = { enabled = true, layout = "ivy", matcher = {
-      frecuency = true,
-    } },
+    picker = {
+      sources = {
+        explorer = {
+          auto_close = true,
+          jump = { close = true },
+          layout = { preset = "sidebar", preview = false, layout = { position = "right" } },
+        },
+        files = {
+          exclude = { "vendor", ".venv", "node_modules" },
+        },
+      },
+      enabled = true,
+      layout = "ivy",
+      matcher = {
+        frecuency = true,
+      },
+    },
     scope = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
     terminal = { enabled = true },
     notifier = { enable = true },
     notify = { enable = true },
+    -- explorer = { enable = true },
   },
   keys = {
     -- Top Pickers & Explorer
+    -- {
+    --   "-",
+    --   function()
+    --     Snacks.explorer()
+    --   end,
+    --   desc = "File Explorer",
+    -- },
     {
       "<leader>sf",
       function()
@@ -36,9 +58,9 @@ return {
       desc = "Smart Find Files",
     },
     {
-      "<Tab>",
+      "<c-p>",
       function()
-        Snacks.picker.buffers({layout = "vscode"})
+        Snacks.picker.buffers({ layout = "vscode" })
       end,
       desc = "Buffers",
     },

@@ -1,2 +1,5 @@
-vim.opt_local.shiftwidth = 2
-vim.opt_local.formatoptions:remove "o"
+local set = vim.opt_local
+
+set.expandtab = false
+set.tabstop = 4
+set.shiftwidth = 4

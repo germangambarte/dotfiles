@@ -8,9 +8,6 @@ return {
     "mason-org/mason.nvim",
     "jay-babu/mason-nvim-dap.nvim",
     "mfussenegger/nvim-dap-python",
-    -- { 'nvim-neotest/neotest', requires = {
-    --   'Issafalcon/neotest-dotnet',
-    -- } },
     "theHamsta/nvim-dap-virtual-text",
   },
   keys = {
@@ -109,19 +106,13 @@ return {
     require("nvim-dap-virtual-text").setup({})
     require("dap-go").setup({
       delve = {
-        -- Use Mason's delve installation with fallback to system delve
         path = function()
           local mason_delve = vim.fn.stdpath("data") .. "/mason/bin/dlv"
           if vim.fn.executable(mason_delve) == 1 then
             return mason_delve
           end
-          -- Fallback to system delve
           return vim.fn.exepath("dlv") ~= "" and vim.fn.exepath("dlv") or "dlv"
         end,
-
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        -- detached = vim.fn.has 'win32' == 0,
       },
     })
   end,

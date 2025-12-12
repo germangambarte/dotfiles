@@ -41,14 +41,6 @@ keymap.set({ "n", "v" }, "<leader>d", '"_d')
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
 
-keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
-
-keymap.set("n", "<leader>ea", 'oassert.NoError(err, "")<Esc>F";a')
-
-keymap.set("n", "<leader>ef", 'oif err != nil {<CR>}<Esc>Olog.Fatalf("error: %s\\n", err.Error())<Esc>jj')
-
-keymap.set("n", "<leader>el", 'oif err != nil {<CR>}<Esc>O.logger.Error("error", "error", err)<Esc>F.;i')
-
 keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
@@ -59,16 +51,26 @@ keymap.set({ "n", "t" }, "<C-Down>", ":resize +2<CR>")
 keymap.set({ "n", "t" }, "<C-Left>", ":vertical resize -2<CR>")
 keymap.set({ "n", "t" }, "<C-Right>", ":vertical resize +2<CR>")
 
-
--- Exit terminal with Esc
-keymap.set("t", "<Esc>", "<C-\\><C-N>")
-
--- Open small terminal
-keymap.set("n", "<leader>st", function()
-	vim.cmd.vnew()
-	vim.cmd.term()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 10)
-end)
-
-keymap.set({"n", "v"}, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false })
+-- -- HARPOON
+--
+-- keymap.set("n", "<leader>a", function()
+--   vim.cmd("argadd %")
+--   vim.cmd("argdedup")
+-- end)
+--
+-- keymap.set("n", "<leader>e", function()
+--   vim.cmd.args()
+-- end)
+--
+-- keymap.set("n", "<M-h>", function()
+--   vim.cmd("silent! 1argument")
+-- end)
+-- keymap.set("n", "<M-j>", function()
+--   vim.cmd("silent! 2argument")
+-- end)
+-- keymap.set("n", "<M-k>", function()
+--   vim.cmd("silent! 3argument")
+-- end)
+-- keymap.set("n", "<M-l>", function()
+--   vim.cmd("silent! 4argument")
+-- end)

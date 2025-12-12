@@ -7,8 +7,8 @@
   "editor.codeLens": false,
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "Iosevka Comfy Wide Motion",
+  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.fontFamily": "Aporetic Sans Mono",
   "editor.fontLigatures": true,
   "editor.fontVariations": true,
   "editor.formatOnSave": true,
@@ -17,7 +17,7 @@
   "editor.guides.highlightActiveIndentation": false,
   "editor.guides.indentation": false,
   "editor.lineHeight": 30,
-  "editor.lineNumbers": "relative",
+  // "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
@@ -42,11 +42,18 @@
   "explorer.compactFolders": false,
   // Extensions
   "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
   "extensions.ignoreRecommendations": true,
   //Extras
   "telemetry.telemetryLevel": "off",
-  "terminal.integrated.fontFamily": "Iosevka Comfy Wide Motion",
+  "terminal.integrated.fontFamily": "Aporetic Sans Mono",
   "window.menuBarVisibility": "hidden",
+  "window.commandCenter": false,
+  // "window.customTitleBarVisibility": "never",
+  "window.density.editorTabHeight": "compact",
+  "workbench.editor.showTabs": "single",
   // GitLens
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
@@ -57,93 +64,20 @@
   "vim.foldfix": true,
   "vim.useSystemClipboard": true,
   "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.searchHighlightTextColor": "#fff",
+  "vim.smartRelativeLine": true,
   "vim.handleKeys": {
-    "<C-d>": true,
-    "<C-s>": false,
-    "<C-z>": false
+    "<C-a>": false,
   },
   "vim.leader": "<space>",
-  "vim.normalModeKeyBindings": [
+  "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["leader", ";"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    // buffers
-    {
-      "before": ["leader", "b", "d"],
-      "commands": ["workbench.action.closeActiveEditor"]
-    },
-    {
-      "before": ["leader", "b", "l"],
-      "commands": ["workbench.action.moveEditorToRightGroup"]
-    },
-    {
-      "before": ["leader", "b", "h"],
-      "commands": ["workbench.action.moveEditorToLeftGroup"]
-    },
-    {
-      "before": ["leader", "b", "k"],
-      "commands": ["workbench.action.moveEditorToAbobetGroup"]
-    },
-    // Files
-    {
-      "before": ["leader", "s", "f"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["leader", "s", "/"],
-      "commands": [
-        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
-      ]
-    },
-    {
-      "before": ["leader", "s", "g"],
-      "commands": [
-        "workbench.action.findInFiles"
-      ]
-    },
-    // Diagnostics
-    {
-      "before": ["[", "d"],
-      "commands": ["editor.action.marker.prev"]
-    },
-    {
-      "before": ["]", "d"],
-      "commands": ["editor.action.marker.next"]
-    },
-    // LSP
-    {
-      "before": ["leader", "c", "a"],
-      "commands": ["editor.action.quickFix"]
-    },
-    {
-      "before": ["leader", "c", "f"],
-      "commands": ["editor.action.formatDocument"]
-    },
-    {
-      "before": ["leader", "b", "j"],
-      "commands": ["workbench.action.moveEditorToBelowGroup"]
-    },
-    // Show views
-    {
-      "before": ["leader", "S", "g"],
-      "commands": ["workbench.view.scm"]
-    },
-    {
-      "before": ["leader", "S", "e"],
-      "commands": ["workbench.view.explorer"]
-    },
-    {
-      "before": ["leader", "S", "s"],
-      "commands": ["workbench.view.search"]
-    },
-    {
-      "before": ["leader", "S", "x"],
-      "commands": ["workbench.view.extensions"]
-    },
-    {
-      "before": ["leader", "S", "d"],
-      "commands": ["workbench.view.debug"]
+      "before": ["<Esc>"],
+      "when": ["editorFocus"],
+      "commands":[":nohl"],
+      "silent":true
     }
   ],
   // Symbols
@@ -151,6 +85,18 @@
   // Typescript
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferGoToSourceDefinition": true,
+  "typescript.preferGoToSourceDefinition": true,
+  "debug.javascript.autoAttachFilter": "onlyWithFlag",
+  "gopls": { "ui.semanticTokens": true },
+  "[go.mod]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "go.toolsManagement.autoUpdate": true,
   //workbench
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {
@@ -173,18 +119,32 @@
   "breadcrumbs.enabled": false,
   "files.autoSaveWhenNoErrors": true,
   "files.autoSave": "afterDelay",
-  "workbench.colorTheme": "poimandres",
+  "workbench.colorTheme": "Rosé Pine Moon",
   "github.copilot.enable": {
     "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false
   },
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
+  "laravel-pint.enable": true,
+  "emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+  "blade.format.enable": true,         // if you would like to enable blade format
+  "[blade]": {
+      "editor.autoClosingBrackets": "always",
+      "editor.defaultFormatter": "onecentlin.laravel-blade"
   },
-  "[csharp]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  "[php]": {
+    "editor.defaultFormatter": "open-southeners.laravel-pint"
+  },
+  "chat.agent.enabled": false,
+  "chat.checkpoints.enabled": false,
+  "chat.commandCenter.enabled": false,
+  "chat.detectParticipant.enabled": false,
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editing.confirmEditRequestRetry": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
   },
 }
 

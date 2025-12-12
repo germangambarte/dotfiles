@@ -9,4 +9,10 @@ return {
     "windwp/nvim-ts-autotag",
     opts = {},
   },
+  {
+    "j-hui/fidget.nvim",
+    config = function ()
+      require("fidget").setup({})
+    end,
+  },
 }

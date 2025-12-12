@@ -1,37 +1,37 @@
 return {
-  -- "ThePrimeagen/harpoon",
-  -- branch = "harpoon2",
-  -- config = function()
-  --   local ok, harpoon = pcall(require, "harpoon")
-  --   if not ok then
-  --     vim.notify("Harpoon no se pudo cargar", vim.log.levels.ERROR)
-  --     return
-  --   end
-  --
-  --   harpoon:setup()
-  --
-  --   -- Agregar archivo actual
-  --   vim.keymap.set("n", "<leader>;", function()
-  --     harpoon:list():add()
-  --   end, { desc = "Agregar archivo a Harpoon" })
-  --
-  --   -- Menú rápido
-  --   vim.keymap.set("n", "<C-e>", function()
-  --     harpoon.ui:toggle_quick_menu(harpoon:list())
-  --   end, { desc = "Mostrar menú Harpoon" })
-  --
-  --   -- Accesos rápidos a archivos
-  --   for i = 1, 5 do
-  --     vim.keymap.set("n", string.format("<M-%d>", i), function()
-  --       local list = harpoon:list()
-  --       if list and list.items[i] then
-  --         pcall(function()
-  --           list:select(i)
-  --         end)
-  --       else
-  --         vim.notify("No hay archivo asignado a <M-" .. i .. ">", vim.log.levels.INFO)
-  --       end
-  --     end, { desc = "Abrir archivo " .. i .. " de Harpoon" })
-  --   end
-  -- end,
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
+  config = function()
+    local ok, harpoon = pcall(require, "harpoon")
+    if not ok then
+      vim.notify("Harpoon no se pudo cargar", vim.log.levels.ERROR)
+      return
+    end
+
+    harpoon:setup()
+
+    -- Agregar archivo actual
+    vim.keymap.set("n", "<leader>a", function()
+      harpoon:list():add()
+    end, { desc = "Agregar archivo a Harpoon" })
+
+    -- Menú rápido
+    vim.keymap.set("n", "<leader>e", function()
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end, { desc = "Mostrar menú Harpoon" })
+
+    -- Accesos rápidos a archivos
+    for i = 1, 5 do
+      vim.keymap.set("n", string.format("<M-%d>", i), function()
+        local list = harpoon:list()
+        if list and list.items[i] then
+          pcall(function()
+            list:select(i)
+          end)
+        else
+          vim.notify("No hay archivo asignado a <M-" .. i .. ">", vim.log.levels.INFO)
+        end
+      end, { desc = "Abrir archivo " .. i .. " de Harpoon" })
+    end
+  end,
 }

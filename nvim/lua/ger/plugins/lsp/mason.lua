@@ -18,6 +18,9 @@ return {
         "clangd",
         "ruff",
         "intelephense",
+        "jdtls",
+        "zls",
+        "rust_analyzer",
       },
     },
     dependencies = {
@@ -50,6 +53,7 @@ return {
         "golangci-lint",
         "delve",
         "codelldb",
+        "kulala-fmt",
       },
     },
     dependencies = {

@@ -19,7 +19,6 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        php = { "pint" },
         sh = { "shfmt" },
         bash = { "shfmt" },
         python = {
@@ -27,21 +26,16 @@ return {
           "ruff_format",
           "ruff_organize_imports",
         },
-
         go = { "goimports", "gofmt" },
         cpp = { "clang_format" },
         c = { "clang_format" },
+        rust = { "rustfmt" },
       },
       formatters = {
         clang_format = {
           prepend_args = { "--style=file", "--fallback-style=WebKit" },
         },
       },
-      -- format_on_save = {
-      --   lsp_fallback = true,
-      --   async = false,
-      --   timeout_ms = 3000,
-      -- },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
