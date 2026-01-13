@@ -11,105 +11,32 @@ gestures {
         off
     }
 }
+include "inputs.kdl"
+include "outputs.kdl"
 
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
-input {
-    keyboard {
-        xkb {
-          layout "us,us"
-          variant "basic,intl"
-          options "grp:alt_shift_toggle, caps:ctrl_modifier"
-        }
-        numlock
-    }
-    touchpad {
-      tap
-      natural-scroll
-    }
-    mouse {
-      natural-scroll
-    }
-    trackpoint {
-    }
-    warp-mouse-to-focus
-    focus-follows-mouse
-}
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-output "eDP-1" {
-    mode "1920x1080@60"
-    scale 1.0
-    position x=3200 y=0
-}
-output "HDMI-A-2" {
-    mode "1920x1080@60"
-    scale 1.0
-    position x=1280 y=0
-}
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+
 layout {
-    // Set gaps around windows in logical pixels.
     gaps 1
     background-color "transparent"
-    // When to center a column when changing focus, options are:
-    // - "never", default behavior, focusing an off-screen column will keep at the left
-    //   or right edge of the screen.
-    // - "always", the focused column will always be centered.
-    // - "on-overflow", focusing a column will center it if it doesn't fit
-    //   together with the previously focused column.
     center-focused-column "never"
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    always-center-single-column
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        // Fixed sets the width in logical pixels exactly.
-        // fixed 1920
     }
-    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    // preset-window-heights { }
-    // You can change the default width of the new windows.
     default-column-width { proportion 0.5; }
-    // If you leave the brackets empty, the windows themselves will decide their initial width.
-    // default-column-width {}
-    // By default focus ring and border are rendered as a solid background rectangle
-    // behind windows. That is, they will show up through semitransparent windows.
-    // This is because windows using client-side decorations can have an arbitrary shape.
-    //
-    // If you don't like that, you should uncomment `prefer-no-csd` below.
-    // Niri will draw focus ring and border *around* windows that agree to omit their
-    // client-side decorations.
-    //
-    // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
     border {
-        off
-        width 4
-        active-color   "#707070"      // Neutral gray
-        inactive-color "#d0d0d0"      // Light gray
-        urgent-color   "#cc4444"      // Softer red
+        width 3
+        active-color   "#31748f"      // Neutral gray
+        inactive-color "#6e6a86"      // Light gray
+        urgent-color   "#eb6f92"      // Softer red
     }
     focus-ring {
-        width 2
-        active-color   "#808080"      // Medium gray
-        inactive-color "#505050"      // Dark gray
+        off
     }
     shadow {
-        // off
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-    }
-    struts {
+        off
     }
 }
 layer-rule {
@@ -121,16 +48,14 @@ overview {
         off
     }
 }
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-// This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 spawn-at-startup "dms" "run"
+// spawn-at-startup "waybar"
 spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 environment {
   XDG_CURRENT_DESKTOP "niri"
+  XDG_SESSION_DESKTOP "niri"
+  XDG_SESSION_TYPE "wayland"
   GTK_IM_MODULE "simple"
   QT_QPA_PLATFORM "wayland"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -145,49 +70,37 @@ hotkey-overlay {
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
-    workspace-switch {
-        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
-    }
-    window-open {
-        duration-ms 150
-        curve "ease-out-expo"
-    }
-    window-close {
-        duration-ms 150
-        curve "ease-out-quad"
-    }
-    horizontal-view-movement {
-        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
-    }
-    window-movement {
-        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
-    }
-    window-resize {
-        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
-    }
-    config-notification-open-close {
-        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
-    }
-    screenshot-ui-open {
-        duration-ms 200
-        curve "ease-out-quad"
-    }
-    overview-open-close {
-        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
-    }
+    // workspace-switch {
+    //     spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+    // }
+    // window-open {
+    //     duration-ms 150
+    //     curve "ease-out-expo"
+    // }
+    // window-close {
+    //     duration-ms 150
+    //     curve "ease-out-quad"
+    // }
+    // horizontal-view-movement {
+    //     spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    // }
+    // window-movement {
+    //     spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
+    // }
+    // window-resize {
+    //     spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    // }
+    // config-notification-open-close {
+    //     spring damping-ratio=0.65 stiffness=923 epsilon=0.001
+    // }
+    // screenshot-ui-open {
+    //     duration-ms 200
+    //     curve "ease-out-quad"
+    // }
+    // overview-open-close {
+    //     spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    // }
 }
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-// window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-//     default-column-width {}
-// }
 window-rule {
     match app-id=r#"^org\.gnome\."#
     draw-border-with-background false
@@ -210,18 +123,6 @@ window-rule {
     match app-id=r#"^xdg-desktop-portal$"#
     open-floating true
 }
-// window-rule {
-//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-//     match app-id="Alacritty"
-//     match app-id="zen"
-//     match app-id="com.mitchellh.ghostty"
-//     match app-id="kitty"
-//     draw-border-with-background false
-// }
-// window-rule {
-//     match is-active=false
-//     opacity 0.9
-// }
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"

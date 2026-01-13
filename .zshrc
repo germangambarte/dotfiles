@@ -1,10 +1,13 @@
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+export EMACS_BIN=$HOME/.config/emacs/bin/
+export OMARCHY_BIN=$HOME/repos/omarchy/bin/
 export DOTNET_ROOT=$HOME/.dotnet
 export CARGO_ROOT=$HOME/.cargo/bin/
 export COMPOSER_ROOT=$HOME/.config/composer/vendor/bin/
-export PATH="$PATH:$CARGO_ROOT:$COMPOSER_ROOT:$DOTNET_ROOT:$DOTNET_ROOT/tools"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
+export PATH="$PATH:$CARGO_ROOT:$COMPOSER_ROOT:$DOTNET_ROOT:$DOTNET_ROOT/tools:$EMACS_BIN:$OMARCHY_BIN"
 export NVIM_LARAVEL_ENV=local
 # export GTK_IM_MODULE=simple
 export GTK_IM_MODULE=simple

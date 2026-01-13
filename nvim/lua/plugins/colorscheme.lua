@@ -1,34 +1,5 @@
 return {
   {
-    "webhooked/kanso.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("kanso").setup({})
-      -- vim.cmd.colorscheme("kanso")
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("catppuccin").setup({
-        lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-            ok = { "undercurl" },
-          },
-        },
-      })
-      -- setup must be called before loading
-      -- vim.cmd.colorscheme("catppuccin")
-    end,
-  },
-  {
     "rebelot/kanagawa.nvim",
     config = function()
       -- Default options:
@@ -78,37 +49,16 @@ return {
           Whitespace = { fg = "#403d52" },
         },
       })
-      vim.cmd("colorscheme rose-pine")
+      -- vim.cmd("colorscheme rose-pine")
     end,
   },
-  -- {
-  --   "jpwol/thorn.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require("thorn").setup({
-  --       theme = "dark", -- 'light' or 'dark' - defaults to vim.o.background if unset
-  --       background = "warm", -- options are 'warm' and 'cold'
-  --       styles = {
-  --         keywords = { italics = true, bold = true },
-  --         comments = { italics = true, bold = true },
-  --         strings = { italics = true, bold = true },
-  --         diagnostic = {
-  --           underline = false, -- if true, flat underlines will be used. Otherwise, undercurls will be used
-  --           error = { highlight = true },
-  --           hint = { highlight = true },
-  --           info = { highlight = true },
-  --           warn = { highlight = true },
-  --         },
-  --       },
-  --
-  --       transparent = false, -- transparent background
-  --       on_highlights = function(hl, palette)
-  --         hl.Whitespace = { fg = "#38524F" }
-  --       end,
-  --     })
-  --     -- after plugin is loaded by your manager
-  --     -- vim.cmd([[colorscheme thorn]])
-  --   end,
-  -- },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("tokyonight").setup({})
+      vim.cmd("colorscheme tokyonight")
+    end,
+  },
 }

@@ -5,7 +5,7 @@ return {
     "rcarriga/nvim-dap-ui",
     "ramboe/ramboe-dotnet-utils",
     "nvim-neotest/nvim-nio",
-    "mason-org/mason.nvim",
+    "williamboman/mason.nvim",
     "jay-babu/mason-nvim-dap.nvim",
     "mfussenegger/nvim-dap-python",
     "theHamsta/nvim-dap-virtual-text",

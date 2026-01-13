@@ -1,0 +1,149 @@
+  {
+  // Editor
+  "editor.bracketPairColorization.enabled": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.codeLens": false,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.fontFamily": "Aporetic Sans Mono",
+  "editor.fontLigatures": true,
+  "editor.fontVariations": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairsHorizontal": false,
+  "editor.guides.highlightActiveBracketPair": false,
+  "editor.guides.highlightActiveIndentation": false,
+  "editor.guides.indentation": false,
+  "editor.lineHeight": 30,
+  // "editor.lineNumbers": "relative",
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.overviewRulerBorder": false,
+  "editor.occurrencesHighlight": "off",
+  "editor.renderLineHighlight": "none",
+  "editor.renderWhitespace": "none",
+  "editor.rulers": [80],
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 0,
+  "editor.smoothScrolling": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggest.insertMode": "replace",
+  "editor.tabSize": 2,
+  // ErrorLens
+  "errorLens.messageBackgroundMode": "message",
+  "errorLens.fontStyleItalic": true,
+  "errorLens.padding": ".5ch 1ch",
+  // Explorer
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.compactFolders": false,
+  // Extensions
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "extensions.ignoreRecommendations": true,
+  //Extras
+  "telemetry.telemetryLevel": "off",
+  "terminal.integrated.fontFamily": "Aporetic Sans Mono",
+  "window.commandCenter": false,
+  // "window.customTitleBarVisibility": "never",
+  "window.density.editorTabHeight": "compact",
+  "workbench.editor.showTabs": "single",
+  // GitLens
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.hovers.enabled": false,
+  "git.openRepositoryInParentFolders": "always",
+  // VIM-CONF
+  "vim.foldfix": true,
+  "vim.useSystemClipboard": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.searchHighlightTextColor": "#fff",
+  "vim.smartRelativeLine": true,
+  "vim.handleKeys": {
+    "<C-a>": false,
+  },
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<Esc>"],
+      "when": ["editorFocus"],
+      "commands":[":nohl"],
+      "silent":true
+    }
+  ],
+  // Symbols
+  "symbols.hidesExplorerArrows": false,
+  // Typescript
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferGoToSourceDefinition": true,
+  "typescript.preferGoToSourceDefinition": true,
+  "debug.javascript.autoAttachFilter": "onlyWithFlag",
+  "gopls": { "ui.semanticTokens": true },
+  "[go.mod]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  //workbench
+  "workbench.activityBar.location": "top",
+  "workbench.colorCustomizations": {
+    "editor.selectionHighlightBorder": "#0000",
+    "editor.wordHighlightStrongBorder": "#0000",
+    "editor.wordHighlightBorder": "#0000",
+    "editorBracketMatch.border": "#0000",
+    "editorBracketMatch.background": "#bdbdbd20",
+    "list.focusOutline": "#bdbdbd17",
+    "list.focusForeground": "#ffffff9a"
+  },
+  "workbench.iconTheme": "symbols",
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "readme",
+  "workbench.tree.renderIndentGuides": "none",
+  "workbench.editor.tabActionCloseVisibility": false,
+  "window.title": "${dirty}${activeEditorShort}",
+  "prettier.requireConfig": true,
+  "breadcrumbs.enabled": false,
+  "files.autoSaveWhenNoErrors": true,
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Rosé Pine Moon",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "laravel-pint.enable": true,
+  "emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+  "blade.format.enable": true,         // if you would like to enable blade format
+  "[blade]": {
+      "editor.autoClosingBrackets": "always",
+      "editor.defaultFormatter": "onecentlin.laravel-blade"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "open-southeners.laravel-pint"
+  },
+  "chat.agent.enabled": false,
+  "chat.checkpoints.enabled": false,
+  "chat.commandCenter.enabled": false,
+  "chat.detectParticipant.enabled": false,
+  "chat.editing.confirmEditRequestRemoval": false,
+  "chat.editing.confirmEditRequestRetry": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+}
+

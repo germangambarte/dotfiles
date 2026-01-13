@@ -1,6 +1,6 @@
 return {
   {
-    "mason-org/mason-lspconfig.nvim",
+    "williamboman/mason-lspconfig.nvim",
     opts = {
       -- list of servers for mason to install
       ensure_installed = {
@@ -20,12 +20,13 @@ return {
         "intelephense",
         "jdtls",
         "zls",
+        "yamlls",
         "rust_analyzer",
       },
     },
     dependencies = {
       {
-        "mason-org/mason.nvim",
+        "williamboman/mason.nvim",
         opts = {
           ui = {
             icons = {
@@ -54,10 +55,11 @@ return {
         "delve",
         "codelldb",
         "kulala-fmt",
+        "xmlformatter",
       },
     },
     dependencies = {
-      "mason-org/mason.nvim",
+      "williamboman/mason.nvim",
     },
   },
 }
