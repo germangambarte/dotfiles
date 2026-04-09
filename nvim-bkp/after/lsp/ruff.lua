@@ -11,6 +11,7 @@ return {
         "--ignore",
         "E712",
       },
+      -- logLevel = "debug",
     },
   },
 }
