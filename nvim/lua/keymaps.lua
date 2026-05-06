@@ -1,5 +1,9 @@
 local map = vim.keymap.set
 
+-- map("n", "<leader>v", { ft = "lua", desc = "LÖVE" })
+map("n", "<leader>vv", "<cmd>LoveRun<cr>", { desc = "Run LÖVE" })
+map("n", "<leader>vs", "<cmd>LoveStop<cr>", { desc = "Stop LÖVE" })
+
 -- Disable Space bar since it will be used as the leader key
 map({ "n", "v" }, "<leader>", "<nop>")
 
@@ -49,6 +53,8 @@ map("n", "<C-s>", "<cmd>w<cr>", { desc = "Save File" })
 map("n", "<C-q>", "<cmd>q!<cr>", { desc = "Force Quit" })
 map("n", "<leader>p", '"_dP')
 map("n", "Y", "y$", { desc = "Yank to end of line" })
+map("n", "W", ":wa<cr>", { desc = "Write All" })
+map("n", "Q", ":q<cr>", { desc = "Quit" })
 
 -- Yank to system clipboard
 map("n", "<leader>y", '"+y')

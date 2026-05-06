@@ -1,6 +1,7 @@
 -- Lista de servidores que quieres habilitar
 local servers = {
 	"cssls",
+    "temple",
 	"emmet_ls",
 	"eslint",
 	"gopls",
@@ -25,7 +26,7 @@ local servers = {
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
-			diagnostics = { globals = { "vim" } },
+			diagnostics = { globals = { "vim", "love"} },
 		},
 	},
 })

@@ -29,6 +29,14 @@
       "rev": "4ed47e8c4c66c921dc1d6643977e0526e1f44396",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "kanagawa.nvim": {
+      "rev": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",
+      "src": "https://github.com/rebelot/kanagawa.nvim"
+    },
+    "love2d.nvim": {
+      "rev": "25715394680590f56aab90390d430cab0dc46808",
+      "src": "https://github.com/S1M0N38/love2d.nvim"
+    },
     "lualine.nvim": {
       "rev": "8811f3f3f4dc09d740c67e9ce399e7a541e2e5b2",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -40,6 +48,10 @@
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mfd.nvim": {
+      "rev": "5d6067159e1b1116a12f34827a353572dbf3bdb9",
+      "src": "https://github.com/kungfusheep/mfd.nvim"
     },
     "mini.nvim": {
       "rev": "402ee6c6ec8ea44b22330446c8fb4e615fd3953e",
@@ -73,6 +85,10 @@
       "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
+    "nvim-tmux-navigation": {
+      "rev": "4898c98702954439233fdaf764c39636681e2861",
+      "src": "https://github.com/alexghergh/nvim-tmux-navigation"
+    },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
@@ -96,6 +112,11 @@
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "thorn.nvim": {
+      "rev": "3fe1b8a6510b57e0e67c654180ad256d2487b68f",
+      "src": "https://github.com/jpwol/thorn.nvim",
+      "version": "'refactor/theme-change'"
     },
     "ultimate-autopair.nvim": {
       "rev": "6b58234de921437836efe27714b2026ed2ee235a",

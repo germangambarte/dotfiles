@@ -1,0 +1,11 @@
+[project]
+name = "pong"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "numpy>=2.4.4",
+    "raylib==5.5.0.3",
+    "setuptools>=82.0.1",
+]
